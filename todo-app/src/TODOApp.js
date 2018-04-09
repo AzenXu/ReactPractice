@@ -1,3 +1,8 @@
+/**
+ * 功能点1: 选中状态变更
+ */
+
+
 import React, { Component } from 'react';
 import TODOHeader from './TODOHeader';
 import TODOInput from './TODOInput';
