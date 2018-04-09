@@ -19,6 +19,7 @@ class TODOItem extends Component {
         return (
             <li>
                 <input type="checkbox" checked={this.props.isChecked} onChange={() => {
+                    //  通过view拿到点击事件
                     console.log("变了变了");
                 }} />
                 <span> { this.props.title } </span>

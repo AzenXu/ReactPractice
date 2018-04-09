@@ -44,7 +44,7 @@ class TODOApp extends Component {
             <div>
                 <TODOHeader name="双笙子" todoCount={ todoCount }/>
                 <TODOInput />
-                <TODOList />
+                <TODOList items={todos}/>
             </div>
         )
     }

@@ -1,14 +1,26 @@
 import React, { Component } from 'react';
-import TODOItem from './TODOItem'
+import TODOItem from './TODOItem';
+import propTypes from 'prop-types';
 
 class TODOList extends Component {
+
+    static get defaultProps () {
+        return {
+            items: []
+        }
+    }
+
+    static propTypes = {
+        items: propTypes.array.isRequired
+    }
+
+
     render() {
         return (
             <ul>
-                <TODOItem title="末世歌者" isChecked={false}/>
-                <TODOItem title="小棋童" isChecked={true}/>
-                <TODOItem title="马步谣" isChecked={false}/>
-                <TODOItem title="藏" isChecked={false} />
+                { this.props.items.map( (item)=> {
+                    return <TODOItem title={item.title} isChecked={item.checked} />
+                }) }
             </ul>
         )
     }
