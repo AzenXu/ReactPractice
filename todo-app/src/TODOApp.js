@@ -17,17 +17,10 @@ import TODOHeader from './TODOHeader';
 import TODOInput from './TODOInput';
 import TODOList from './TODOList';
 
-//  模拟网络获取到的外部数据
-//  需要todoCount根据checked的状态动态显示
-
 let _toggleItemList = (todos, ID) => {
-    console.log("进来_toggleItemList");
-    return todos.map((item) => {
-        if (item.id === ID) {
-            item.checked = !item.checked;
-        }
-        return item;
-    });
+    let target = todos.find((item) => item.id === ID);
+    target.checked = !target.checked;
+    return todos;
 }
 
 class TODOApp extends Component {
