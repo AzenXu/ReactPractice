@@ -23,6 +23,12 @@ let _toggleItemList = (todos, ID) => {
     return todos;
 }
 
+let _deleteItemList = (todos, ID) => {
+    let idx = todos.findIndex((item) => item.id === ID); // 找到索引
+    todos.splice(idx,1);
+    return todos;
+}
+
 class TODOApp extends Component {
 
     constructor(props) {
@@ -48,6 +54,11 @@ class TODOApp extends Component {
                     id: 103,
                     title: "藏",
                     checked: false
+                },
+                {
+                    id: 104,
+                    title: "采茶纪",
+                    checked: false
                 }
             ]
         }
@@ -69,6 +80,13 @@ class TODOApp extends Component {
                     this.setState(() => {
                         return {
                             todos: _toggleItemList(todos, ID) // 通过自定义函数修改todos并返回
+                        }
+                    });
+                }} deleteItemList={(ID)=>{
+                    console.log(ID+"删除");
+                    this.setState(() => {
+                        return {
+                            todos: _deleteItemList(todos, ID) // 通过自定义函数修改todos并返回
                         }
                     });
                 }}/>
