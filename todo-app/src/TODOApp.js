@@ -7,7 +7,7 @@ class TODOApp extends Component {
     render() {
         return (
             <div>
-                <TODOHeader />
+                <TODOHeader name="双笙子" todoCount={88}/>
                 <TODOInput />
                 <TODOList />
             </div>

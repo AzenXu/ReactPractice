@@ -1,24 +1,13 @@
 import React, { Component } from 'react';
+import TODOItem from './TODOItem'
 
 class TODOList extends Component {
     render() {
         return (
             <ul>
-                <li>
-                    <input type="checkbox"/>
-                    <span>第1条</span>
-                    <button>x</button>
-                </li>
-                <li>
-                    <input type="checkbox" />
-                    <span>第2条</span>
-                    <button>x</button>
-                </li>
-                <li>
-                    <input type="checkbox" />
-                    <span>第3条</span>
-                    <button>x</button>
-                </li>
+                <TODOItem title="末世歌者" isChecked={false}/>
+                <TODOItem />
+                <TODOItem />
             </ul>
         )
     }
