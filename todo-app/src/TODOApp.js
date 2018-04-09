@@ -52,7 +52,7 @@ class TODOApp extends Component {
     }
 
     componentDidMount() {
-        //  网络请求 & 解析
+        //  网络请求 & 解析 记得别请求回来的数据要先解析再用呀...
         fetch('todos.json')
             .then((response) => response.json())
             .then((todos) => {
