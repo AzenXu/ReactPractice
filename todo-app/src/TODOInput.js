@@ -7,7 +7,7 @@ class TODOInput extends Component {
         return {
             type: "text",
             style: { width: 200, height: 30, marginBottom: 30 },
-            placeholder: "请输入准备录制的歌"
+            placeholder: "请输入准备录制的声音"
         }
     }
 
@@ -20,11 +20,7 @@ class TODOInput extends Component {
 
     render() {
         return (
-            <input 
-                type={this.props.type}
-                style={this.props.style} 
-                placeholder={this.props.placeholder}
-            />
+            <input {...this.props}/>
         )
     }
 }
