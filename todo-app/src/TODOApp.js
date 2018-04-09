@@ -47,33 +47,7 @@ class TODOApp extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            todos: [
-                {
-                    id: 100,
-                    title: "末世歌者",
-                    checked: true
-                },
-                {
-                    id: 101,
-                    title: "小棋童",
-                    checked: false
-                },
-                {
-                    id: 102,
-                    title: "马步谣",
-                    checked: false
-                },
-                {
-                    id: 103,
-                    title: "藏",
-                    checked: false
-                },
-                {
-                    id: 104,
-                    title: "采茶纪",
-                    checked: false
-                }
-            ]
+            todos: []
         }
     }
 
