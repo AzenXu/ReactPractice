@@ -9,6 +9,8 @@
  * 
  * 思路：点击按钮的时候，想办法修改state中的todos中对应id的objedc的checked值
  * 把点击了的东东的ID，传出来，传到TODOApp中，就能知道应该修改哪个item的checked值了。
+ * 
+ * 下一步：更仿真的模拟网络请求数据 - 存入json文件中 - json文件只能放在public中，否则读不到
  */
 
 
