@@ -6,12 +6,14 @@ class TODOList extends Component {
 
     static get defaultProps () {
         return {
-            items: []
+            items: [],
+            toggleItemList: () => {}
         }
     }
 
     static propTypes = {
-        items: propTypes.array.isRequired
+        items: propTypes.array.isRequired,
+        toggleItemList: propTypes.func.isRequired
     }
 
 
@@ -21,6 +23,7 @@ class TODOList extends Component {
                 { this.props.items.map( (item)=> {
                     return <TODOItem title={item.title} isChecked={item.checked} key={item.id} id={item.id} toggleItem={(ID)=>{
                         console.log(ID);
+                        this.props.toggleItemList(ID);
                     }} />
                 }) }
             </ul>
