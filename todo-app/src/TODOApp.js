@@ -51,6 +51,16 @@ class TODOApp extends Component {
         }
     }
 
+    componentDidMount() {
+        //  网络请求 & 解析
+        fetch('todos.json')
+            .then((response) => response.json())
+            .then((todos) => {
+                console.log(todos);
+                this.setState({todos});
+            })
+    }
+
     render() {
 
         const { todos } = this.state;
