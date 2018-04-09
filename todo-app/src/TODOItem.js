@@ -16,12 +16,15 @@ class TODOItem extends Component {
     }
 
     render() {
+
+        var { isChecked, title, ...other } = this.props;
+
         return (
             <li>
                 <input type="checkbox" checked={this.props.isChecked} onChange={() => {
                     //  通过view拿到点击事件
                     console.log("变了变了");
-                }} />
+                }} {...other}/>
                 <span> { this.props.title } </span>
                 <button>x</button>
             </li>

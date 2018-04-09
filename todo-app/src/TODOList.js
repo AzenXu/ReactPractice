@@ -19,7 +19,7 @@ class TODOList extends Component {
         return (
             <ul>
                 { this.props.items.map( (item)=> {
-                    return <TODOItem title={item.title} isChecked={item.checked} />
+                    return <TODOItem title={item.title} isChecked={item.checked} key={item.id} />
                 }) }
             </ul>
         )
