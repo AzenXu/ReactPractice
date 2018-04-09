@@ -20,6 +20,16 @@ import TODOList from './TODOList';
 //  模拟网络获取到的外部数据
 //  需要todoCount根据checked的状态动态显示
 
+let _toggleItemList = (todos, ID) => {
+    console.log("进来_toggleItemList");
+    return todos.map((item) => {
+        if (item.id === ID) {
+            item.checked = !item.checked;
+        }
+        return item;
+    });
+}
+
 class TODOApp extends Component {
 
     constructor(props) {
@@ -63,6 +73,11 @@ class TODOApp extends Component {
                 <TODOInput />
                 <TODOList items={ todos } toggleItemList={(ID) => {
                     console.log(ID);
+                    this.setState(() => {
+                        return {
+                            todos: _toggleItemList(todos, ID) // 通过自定义函数修改todos并返回
+                        }
+                    });
                 }}/>
             </div>
         )
