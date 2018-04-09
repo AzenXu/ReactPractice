@@ -29,6 +29,17 @@ let _deleteItemList = (todos, ID) => {
     return todos;
 }
 
+let _createItem = (todos, title) => {
+    let lastID = todos.length > 0 ? todos[todos.length - 1].id : 100;
+    let newitem = {
+        id:lastID + 1,
+        title: title,
+        checked: false
+    }
+    todos.push(newitem);
+    return todos;
+}
+
 class TODOApp extends Component {
 
     constructor(props) {
@@ -74,7 +85,15 @@ class TODOApp extends Component {
         return (
             <div>
                 <TODOHeader name="双笙子" todoCount={ todoCount }/>
-                <TODOInput />
+                <TODOInput autoFocus={true} onKeyDown={(event)=>{
+                    if (event.keyCode === 13 && event.target.value.length > 0) { // 按下enter键键
+                        console.log(event.target.value); // 打印框中内容
+                        this.setState({
+                            todos: _createItem(todos, event.target.value)
+                        })
+                        event.target.value = ""; // 清空输入框
+                    }
+                }}/>
                 <TODOList items={ todos } toggleItemList={(ID) => {
                     console.log(ID);
                     this.setState(() => {
