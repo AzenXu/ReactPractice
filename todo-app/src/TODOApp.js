@@ -32,10 +32,6 @@ class TODOApp extends Component {
     render() {
 
         //  过滤外部数据，计算待办事项数
-        // let todoCount = todos.filter((object) => {
-        //     return !object.checked;
-        // }).length;
-
         //  等价写法
         let todoCount = todos.filter((object) => !object.checked).length;
 
