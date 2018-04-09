@@ -34,6 +34,8 @@ class ShowEditor extends Component {
                 />
                 <h1>输出</h1>
                 <ShowContent content={ this.state.textValue }/>
+                <h1>注释</h1>
+                <ShowContent content={ "这行字符串就不会变" } />
             </div>
         );
     }
