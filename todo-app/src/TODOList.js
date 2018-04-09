@@ -6,8 +6,8 @@ class TODOList extends Component {
         return (
             <ul>
                 <TODOItem title="末世歌者" isChecked={false}/>
-                <TODOItem />
-                <TODOItem />
+                <TODOItem title="小棋童" isChecked={true}/>
+                <TODOItem title="马步谣" isChecked={false}/>
             </ul>
         )
     }
