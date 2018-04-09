@@ -2,3 +2,4 @@
 .idea*
 *.py[cod]
 client/node_modules/
+my-app/node_modules
