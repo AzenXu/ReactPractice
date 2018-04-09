@@ -19,7 +19,9 @@ class TODOList extends Component {
         return (
             <ul>
                 { this.props.items.map( (item)=> {
-                    return <TODOItem title={item.title} isChecked={item.checked} key={item.id} />
+                    return <TODOItem title={item.title} isChecked={item.checked} key={item.id} id={item.id} toggleItem={(ID)=>{
+                        console.log(ID);
+                    }} />
                 }) }
             </ul>
         )

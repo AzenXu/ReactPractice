@@ -6,6 +6,9 @@
  * 3. 待办数量变化
  * 
  * 状态机：当状态机变量的值发生变化，会刷新UI
+ * 
+ * 思路：点击按钮的时候，想办法修改state中的todos中对应id的objedc的checked值
+ * 把点击了的东东的ID，传出来，传到TODOApp中，就能知道应该修改哪个item的checked值了。
  */
 
 
@@ -50,8 +53,8 @@ class TODOApp extends Component {
     render() {
 
         const { todos } = this.state;
-        //  过滤外部数据，计算待办事项数
-        //  等价写法
+
+        //  状态机刷新之后，会重新计算todoCount
         let todoCount = todos.filter((object) => !object.checked).length;
 
         return (
