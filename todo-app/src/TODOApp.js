@@ -3,6 +3,10 @@ import TODOHeader from './TODOHeader';
 import TODOInput from './TODOInput';
 import TODOList from './TODOList';
 
+let todos = [
+    
+]
+
 class TODOApp extends Component {
     render() {
         return (
