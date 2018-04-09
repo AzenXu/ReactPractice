@@ -18,7 +18,6 @@ class TODOList extends Component {
         deleteItemList: propTypes.func.isRequired
     }
 
-
     render() {
         return (
             <ul>
