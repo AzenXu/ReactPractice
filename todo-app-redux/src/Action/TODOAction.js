@@ -32,7 +32,7 @@ let TODOAction = {
             type: Constants.EDITITEM
         }
     },
-    loadData () {
+    loadData () { // 异步操作先不处理..等等回过头来搞它
         fetch('todos.json')
             .then((response) => response.json())
             .then((todos) => {
