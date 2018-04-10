@@ -19,46 +19,28 @@ import TODOHeader from './TODOHeader';
 import TODOInput from './TODOInput';
 import TODOList from './TODOList';
 
-let _toggleItemList = (todos, ID) => {
-    let target = todos.find((item) => item.id === ID);
-    target.checked = !target.checked;
-    return todos;
-}
-
-let _deleteItemList = (todos, ID) => {
-    let idx = todos.findIndex((item) => item.id === ID); // 找到索引
-    todos.splice(idx,1);
-    return todos;
-}
-
-let _createItem = (todos, title) => {
-    let lastID = todos.length > 0 ? todos[todos.length - 1].id : 100;
-    let newitem = {
-        id:lastID + 1,
-        title: title,
-        checked: false
-    }
-    todos.push(newitem);
-    return todos;
-}
+import TODOAction from '../Action/TODOAction'
+import TODOStore from '../Store/TODOStore'
 
 class TODOApp extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            todos: []
+            todos: TODOStore.getTodos()
         }
     }
 
     componentDidMount() {
-        //  网络请求 & 解析 记得别请求回来的数据要先解析再用呀...
-        fetch('todos.json')
-            .then((response) => response.json())
-            .then((todos) => {
-                console.log(todos);
-                this.setState({todos});
-            })
+        this.removeObserver = TODOStore.addObserver(() => {
+            this.setState({
+                todos:TODOStore.getTodos()
+            });
+        });
+    }
+
+    componentWillUnmount() {
+        this.removeObserver();
     }
 
     render() {
@@ -71,30 +53,13 @@ class TODOApp extends Component {
         return (
             <div>
                 <TODOHeader name="双笙子" todoCount={ todoCount }/>
-                <TODOInput autoFocus={true} onKeyDown={(event)=>{
+                <TODOInput autoFocus={ true } onKeyDown={ (event)=>{
                     if (event.keyCode === 13 && event.target.value.length > 0) { // 按下enter键键
-                        console.log(event.target.value); // 打印框中内容
-                        this.setState({
-                            todos: _createItem(todos, event.target.value)
-                        })
+                        TODOAction.createItem(event.target.value);
                         event.target.value = ""; // 清空输入框
                     }
-                }}/>
-                <TODOList items={ todos } toggleItemList={(ID) => {
-                    console.log(ID);
-                    this.setState(() => {
-                        return {
-                            todos: _toggleItemList(todos, ID) // 通过自定义函数修改todos并返回
-                        }
-                    });
-                }} deleteItemList={(ID)=>{
-                    console.log(ID+"删除");
-                    this.setState(() => {
-                        return {
-                            todos: _deleteItemList(todos, ID) // 通过自定义函数修改todos并返回
-                        }
-                    });
-                }}/>
+                } }/>
+                <TODOList items={todos} toggleItemList={TODOAction.toggleItemList} deleteItemList={TODOAction.deleteItem}/>
             </div>
         )
     }

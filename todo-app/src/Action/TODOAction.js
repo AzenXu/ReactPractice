@@ -8,32 +8,32 @@ import Dispatcher from '../Dispatcher/TODODispatcher'
 import TODODispatcher from '../Dispatcher/TODODispatcher';
 
 let TODOAction = {
-    toggleItemList = (ID) => { // 不需要传todos的原因在于：store中存了需要改变的todos
+    toggleItemList(ID) { // 不需要传todos的原因在于：store中存了需要改变的todos
         TODODispatcher.dispatch({
             id,
             type: Constants.TOGGLEITEM
         })
     },
-    deleteItem = (ID) => {
+    deleteItem(ID) {
         TODODispatcher.dispatch({
             id,
             type: Constants.DELETEITEM
         })
     },
-    createItem = (title) => {
+    createItem (title) {
         TODODispatcher.dispatch({
             title,
             type: Constants.CREATEITEM
         })
     },
-    editItem = (id, title) => {
+    editItem (id, title) {
         TODODispatcher.dispatch({
             id,
             title,
             type: Constants.EDITITEM
         })
     },
-    loadData = () => {
+    loadData () {
         fetch('todos.json')
             .then((response) => response.json())
             .then((todos) => {
