@@ -1,22 +1,27 @@
 
 import dispatcher from '../Dispatcher/CounterDispatcher'
 import actionType from '../Consts'
+import EventEmitter from 'events'
 
 let count = 0;
-var changeHandler = () => {};
+// var changeHandler = () => {};
+
+const kStateChangeNotification = "kStateChangeNotification";
+const _notificationCenter = new EventEmitter();
 
 export default {
+
     getCount() {
         return count;
     },
 
     addListener(stateChangedHandler) {
-        changeHandler = stateChangedHandler;
+        // changeHandler = stateChangedHandler;
+        _notificationCenter.on(kStateChangeNotification, stateChangedHandler)
+        return () => _notificationCenter.removeAllListeners(kStateChangeNotification, stateChangedHandler)
     },
     
     _dispatcherToken: dispatcher.register((action) => {
-        console.log(action.type);
-        
         switch (action.type) {
             case actionType.INCREASE:
                 count++;
@@ -29,6 +34,7 @@ export default {
             default:
                 break;
         }
-        changeHandler();
+        _notificationCenter.emit(kStateChangeNotification);
+        // changeHandler();
     })
 }
