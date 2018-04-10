@@ -5,57 +5,13 @@
 
 import Constants from '../Constants/Constants';
 import TODODispatcher from '../Dispatcher/TODODispatcher';
-import { ReduceStore } from 'flux/utils'; // 导入ReduceStore
-
-// let TODOStore = {
-
-//     getTodos() {
-//         return todos;
-//     },
-
-//     addObserver (callBack) { // ReduceStore已经封装了这个方法
-//         _emitter.on(CHANGE_TODOS,callBack);
-
-//         return () => _emitter.removeListener(CHANGE_TODOS,callBack);
-//     },
-
-//     _dispatchToken: TODODispatcher.register((action) => {
-//         switch (action.type) {
-//             case Constants.TOGGLEITEM:
-//                 todos = _toggleItemList(todos, action.ID);
-//                 break;
-
-//             case Constants.DELETEITEM:
-//                 todos = _deleteItemList(todos, action.ID);
-//                 break;
-
-//             case Constants.CREATEITEM:
-//                 todos = _createItem(todos, action.title);
-//                 break;
-
-//             case Constants.EDITITEM:
-//                 console.log("还没实现");
-                
-//                 break;
-
-//             case Constants.LOADDATA:
-//                 todos = action.todos;
-//                 break;
-        
-//             default:
-//                 break;
-//         }
-
-//         _emitter.emit(CHANGE_TODOS);
-//     })
-// }
+import { ReduceStore } from 'flux/utils';
 
 class TODOStore extends ReduceStore {
     getInitialState() {
-          return [];  // 类似getTodos方法
+          return [];
     } 
     
-    //  框架会对比修改后的todos和修改前的todos，如果有变化才会刷新View
     reduce(todos, action) {
         switch (action.type) {
             case Constants.TOGGLEITEM:
@@ -82,7 +38,7 @@ class TODOStore extends ReduceStore {
 
 let _toggleItemList = (todos, ID) => {
 
-    let newTodos = [...todos]; // 复制todos，不修改上一个传进来的todos
+    let newTodos = [...todos];
 
     let target = newTodos.find((item) => item.id === ID);
     target.checked = !target.checked;
@@ -91,15 +47,14 @@ let _toggleItemList = (todos, ID) => {
 }
 
 let _deleteItemList = (todos, ID) => {
-    let newTodos = [...todos]; // 复制todos，不修改上一个传进来的todos
-
+    let newTodos = [...todos];
     let idx = newTodos.findIndex((item) => item.id === ID);
     newTodos.splice(idx, 1);
     return newTodos;
 }
 
 let _createItem = (todos, title) => {
-    let newTodos = [...todos]; // 复制todos，不修改上一个传进来的todos
+    let newTodos = [...todos];
 
     let lastID = newTodos.length > 0 ? newTodos[newTodos.length - 1].id : 100;
     let newitem = {
