@@ -4,8 +4,8 @@
 
 
 import React, { Component } from 'react';
-import TODOHeader from './TODOHeader';
-import TODOInput from './TODOInput';
+import TODOHeaderContainer from './TODOHeaderContainer';
+import TODOInputContainer from './TODOInputContainer';
 import TODOList from './TODOList';
 
 import TODOAction from '../Action/TODOAction'
@@ -37,18 +37,10 @@ class TODOApp extends Component {
 
         const { todos } = this.state;
 
-        //  状态机刷新之后，会重新计算todoCount
-        let todoCount = todos.filter((object) => !object.checked).length;
-
         return (
             <div>
-                <TODOHeader name="双笙子" todoCount={ todoCount }/>
-                <TODOInput autoFocus={ true } onKeyDown={ (event)=>{
-                    if (event.keyCode === 13 && event.target.value.length > 0) { // 按下enter键键
-                        TODOAction.createItem(event.target.value);
-                        event.target.value = ""; // 清空输入框
-                    }
-                } }/>
+                <TODOHeaderContainer />
+                <TODOInputContainer />
                 <TODOList items={todos} toggleItemList={TODOAction.toggleItemList} deleteItemList={TODOAction.deleteItem}/>
             </div>
         )
