@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import TODOInput from './TODOInput';
-import TODOStore from '../Store/TODOStore'
 import TODOAction from '../Action/TODOAction'
 
 class TODOInputContainer extends Component {

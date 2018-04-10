@@ -111,4 +111,5 @@ let _createItem = (todos, title) => {
     return newTodos;
 }
 
-export default TODOStore;
+//  需要在初始化的时候，把Dispatcher传给TODOStore，以关联起来。这样就不用自己去监听Dispatcher发布Action这个行为了。reduce 函数都封装好了
+export default new TODOStore(TODODispatcher);

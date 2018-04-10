@@ -9,7 +9,6 @@ import TODOInputContainer from './TODOInputContainer';
 import TODOListContainer from './TODOListContainer';
 
 import TODOAction from '../Action/TODOAction'
-import TODOStore from '../Store/TODOStore'
 
 class TODOApp extends Component {
 
