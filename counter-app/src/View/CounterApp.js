@@ -12,23 +12,23 @@ class CounterApp extends Component {
     }
 
     componentDidMount() {
-        Store.addListener(()=>{
+        this.listener = Store.addListener(()=>{
             this.setState({
                 count:Store.getCount()
             })
         })
     }
 
+    componentWillUnmount() {
+        this.listener();
+    }
+
     render () {
         return (
             <div>
                 <h1>{ Store.getCount() }</h1>
-                <button onClick={() => {
-                    Action.increase();
-                }}> + </button>
-                <button onClick={() => {
-                    Action.decrease();
-                }}> - </button>
+                <button onClick={ Action.increase }> + </button>
+                <button onClick={ Action.decrease }> - </button>
             </div>
         )
     }
