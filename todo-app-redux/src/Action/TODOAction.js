@@ -7,7 +7,7 @@ import Constants from '../Constants/Constants'
 import TODODispatcher from '../Dispatcher/TODODispatcher';
 
 let TODOAction = {
-    toggleItemList(ID) {
+    toggleItemList(ID) { 
         return {
             ID,
             type: Constants.TOGGLEITEM
@@ -32,16 +32,21 @@ let TODOAction = {
             type: Constants.EDITITEM
         }
     },
-    loadData () { // 异步操作先不处理..等等回过头来搞它
-        fetch('todos.json')
-            .then((response) => response.json())
-            .then((todos) => {
-                console.log(todos);
-                TODODispatcher.dispatch({
-                    todos,
-                    type: Constants.LOADDATA
+    loadData () {
+        //  下面的dispatch就是store中的dispatch...等等解释
+        //  返回了一个箭头函数
+        //  处理异步action的方法 - 执行完之后再调用dispatch进行数据分发
+        return (dispatch) => {
+            fetch('todos.json')
+                .then((response) => response.json())
+                .then((todos) => {
+                    console.log(todos);
+                    dispatch({
+                        type: Constants.LOADDATA,
+                        todos
+                    })
                 })
-            })
+        }
     }
 }
 
