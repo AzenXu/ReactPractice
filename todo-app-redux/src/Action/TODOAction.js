@@ -8,29 +8,29 @@ import TODODispatcher from '../Dispatcher/TODODispatcher';
 
 let TODOAction = {
     toggleItemList(ID) {
-        TODODispatcher.dispatch({
+        return {
             ID,
             type: Constants.TOGGLEITEM
-        })
+        }
     },
     deleteItem(ID) {
-        TODODispatcher.dispatch({
+        return {
             ID,
             type: Constants.DELETEITEM
-        })
+        }
     },
     createItem (title) {
-        TODODispatcher.dispatch({
+        return {
             title,
             type: Constants.CREATEITEM
-        })
+        }
     },
     editItem (ID, title) {
-        TODODispatcher.dispatch({
+        return {
             ID,
             title,
             type: Constants.EDITITEM
-        })
+        }
     },
     loadData () {
         fetch('todos.json')
