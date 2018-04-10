@@ -1,32 +1,24 @@
 import React, { Component } from 'react';
 import Action from '../Action/CounterAction';
 import Store from '../Store/CounterStore';
+import { Container } from 'flux/utils';
 
 class CounterApp extends Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            count:Store.getState()
+    static getStores() {
+        return [Store];
+    }
+
+    static calculateState(prevState) {
+        return {
+            count: Store.getState()
         };
-    }
-
-    componentDidMount() {
-        this.listener = Store.addListener(()=>{
-            this.setState({
-                count: Store.getState()
-            })
-        })
-    }
-
-    componentWillUnmount() {
-        this.listener();
     }
 
     render () {
         return (
             <div>
-                <h1>{ Store.getState() }</h1>
+                <h1>{ this.state.count }</h1>
                 <button onClick={ Action.increase }> + </button>
                 <button onClick={ Action.decrease }> - </button>
             </div>
@@ -34,4 +26,4 @@ class CounterApp extends Component {
     }
 }
 
-export default CounterApp;
+export default Container.create(CounterApp);
