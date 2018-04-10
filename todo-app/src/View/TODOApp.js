@@ -1,16 +1,5 @@
 /**
- * 功能点1: 选中状态变更
- * 逻辑: 
- * 1. 点击按钮，触发TODOItem中的onChange函数
- * 2. 打勾
- * 3. 待办数量变化
- * 
- * 状态机：当状态机变量的值发生变化，会刷新UI
- * 
- * 思路：点击按钮的时候，想办法修改state中的todos中对应id的objedc的checked值
- * 把点击了的东东的ID，传出来，传到TODOApp中，就能知道应该修改哪个item的checked值了。
- * 
- * 下一步：更仿真的模拟网络请求数据 - 存入json文件中 - json文件只能放在public中，否则读不到
+ * 优化：使用Container-Pattern设计模式，简化TODOApp中的代码
  */
 
 
