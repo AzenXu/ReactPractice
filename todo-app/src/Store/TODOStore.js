@@ -7,8 +7,8 @@ import TODODispatcher from '../Dispatcher/TODODispatcher';
 
 // ---
 // 为了传消息给View
-const CHANGE_TODOS = "CHANGE_TODOS";
 import EventEmitter from 'events';
+const CHANGE_TODOS = "CHANGE_TODOS";
 const _emitter = new EventEmitter;
 // ---
 
@@ -19,13 +19,13 @@ let todos = [];
 let TODOStore = {
     //  获取数据的方法 - 只有get方法木有set方法
     //  不能直接修改数据，只能通过Action来修改
-    getTodos = () => {
+    getTodos() {
         return todos;
     },
     //  Target: todos变了让View感知到，并刷新View
     //  Action: 外界传进来一个闭包方法，todos变了就调这个闭包方法，把todos作为参数传出去...
     //  方案二：使用EventEmitter这个东东，在合理的时间触发callBack
-    addObserver = (callBack) => {
+    addObserver (callBack) {
         //  又类似个通知中心... 监听CHANGE_TODOS这个消息的发出，执行callBack
         _emitter.on(CHANGE_TODOS,callBack);
 
@@ -88,4 +88,4 @@ let _createItem = (todos, title) => {
     return todos;
 }
 
-module.exports = TODOStore;
+export default TODOStore;

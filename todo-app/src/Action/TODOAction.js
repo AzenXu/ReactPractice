@@ -10,13 +10,13 @@ import TODODispatcher from '../Dispatcher/TODODispatcher';
 let TODOAction = {
     toggleItemList(ID) { // 不需要传todos的原因在于：store中存了需要改变的todos
         TODODispatcher.dispatch({
-            id,
+            ID,
             type: Constants.TOGGLEITEM
         })
     },
     deleteItem(ID) {
         TODODispatcher.dispatch({
-            id,
+            ID,
             type: Constants.DELETEITEM
         })
     },
@@ -26,9 +26,9 @@ let TODOAction = {
             type: Constants.CREATEITEM
         })
     },
-    editItem (id, title) {
+    editItem (ID, title) {
         TODODispatcher.dispatch({
-            id,
+            ID,
             title,
             type: Constants.EDITITEM
         })
@@ -46,4 +46,4 @@ let TODOAction = {
     }
 }
 
-module.exports = TODOAction;
+export default TODOAction;

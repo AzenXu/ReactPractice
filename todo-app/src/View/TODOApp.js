@@ -37,6 +37,7 @@ class TODOApp extends Component {
                 todos:TODOStore.getTodos()
             });
         });
+        TODOAction.loadData();
     }
 
     componentWillUnmount() {
