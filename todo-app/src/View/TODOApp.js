@@ -6,7 +6,7 @@
 import React, { Component } from 'react';
 import TODOHeaderContainer from './TODOHeaderContainer';
 import TODOInputContainer from './TODOInputContainer';
-import TODOList from './TODOList';
+import TODOListContainer from './TODOListContainer';
 
 import TODOAction from '../Action/TODOAction'
 import TODOStore from '../Store/TODOStore'
@@ -34,14 +34,11 @@ class TODOApp extends Component {
     }
 
     render() {
-
-        const { todos } = this.state;
-
         return (
             <div>
                 <TODOHeaderContainer />
                 <TODOInputContainer />
-                <TODOList items={todos} toggleItemList={TODOAction.toggleItemList} deleteItemList={TODOAction.deleteItem}/>
+                <TODOListContainer />
             </div>
         )
     }
