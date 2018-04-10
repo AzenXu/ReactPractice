@@ -3,13 +3,18 @@ import TODOList from './TODOList';
 import TODOStore from '../Store/TODOStore'
 import TODOAction from '../Action/TODOAction'
 
+import { Container } from 'flux/utils'
+
 class TODOListContainer extends Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            todos: TODOStore.getState()
-        }
+    static getStores() {
+        return [TODOStore];
+    }
+
+    static calculateState(prevState) {
+        return {
+            todos: TODOStore.getState(),
+        };
     }
 
     render() {
@@ -18,18 +23,6 @@ class TODOListContainer extends Component {
 
         return <TODOList items={ todos } toggleItemList={TODOAction.toggleItemList} deleteItemList={TODOAction.deleteItem} />
     }
-
-    componentDidMount() {
-        this.removeObserver = TODOStore.addListener(() => {
-            this.setState({
-                todos: TODOStore.getState()
-            });
-        });
-    }
-
-    componentWillUnmount() {
-        this.removeObserver();
-    }
 }
 
-export default TODOListContainer;
+export default Container.create(TODOListContainer);
