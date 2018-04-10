@@ -15,7 +15,8 @@ let TODOStore = {
     getTodos = () => {
         return todos;
     },
-    //  获取Dispatcher通知
+    //  获取Dispatcher通知，相应action
+    //  token的作用：项目中可能有多个store, 一个store想优先执行，则可以通过另一个store的token，让它先暂停一段时间
     _dispatchToken: TODODispatcher.register((action) => {
         switch (action.type) {
             case Constants.TOGGLEITEM:
