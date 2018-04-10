@@ -1,14 +1,23 @@
+/**
+ * 目前自己写的Container的问题：重复代码太多
+ * flux util
+ */
+
 import React, { Component } from 'react';
 import TODOHeader from './TODOHeader';
 import TODOStore from '../Store/TODOStore'
+import { Container } from 'flux/utils'
 
 class TODOHeaderContainer extends Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            todos: TODOStore.getState()
-        }
+    static getStores() {
+        return [TODOStore]; 
+    } 
+    
+    static calculateState(prevState) {
+        return { 
+             todos: TODOStore.getState(), 
+        }; 
     }
 
     render() {
@@ -18,18 +27,6 @@ class TODOHeaderContainer extends Component {
 
         return <TODOHeader name="双笙子" todoCount={todoCount} />;
     }
-
-    componentDidMount() {
-        this.removeObserver = TODOStore.addListener(() => {
-            this.setState({
-                todos: TODOStore.getState()
-            });
-        });
-    }
-
-    componentWillUnmount() {
-        this.removeObserver();
-    }
 }
 
-export default TODOHeaderContainer;
+export default Container.create(TODOHeaderContainer);
