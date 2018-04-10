@@ -7,7 +7,7 @@ import Constants from '../Constants/Constants'
 import TODODispatcher from '../Dispatcher/TODODispatcher';
 
 let TODOAction = {
-    toggleItemList(ID) { // 不需要传todos的原因在于：store中存了需要改变的todos
+    toggleItemList(ID) {
         TODODispatcher.dispatch({
             ID,
             type: Constants.TOGGLEITEM

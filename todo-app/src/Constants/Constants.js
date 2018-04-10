@@ -1,5 +1,4 @@
 
-
 let Constants = {
     TOGGLEITEM: "toggleItem",
     DELETEITEM: "deleteItem",

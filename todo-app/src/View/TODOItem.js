@@ -27,7 +27,7 @@ class TODOItem extends Component {
         return (
             <li>
                 <input type="checkbox" checked={this.props.isChecked} onChange={() => {
-                    toggleItem(id) // 把id传给外界 - key就是id，外面传进来的
+                    toggleItem(id)
                 }} {...other}/>
                 <span> { this.props.title } </span>
                 <button onClick={() => {

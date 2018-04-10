@@ -9,7 +9,7 @@ class TODOInputContainer extends Component {
         return <TODOInput autoFocus={true} onKeyDown={(event) => {
             if (event.keyCode === 13 && event.target.value.length > 0) { // 按下enter键键
                 TODOAction.createItem(event.target.value);
-                event.target.value = ""; // 清空输入框
+                event.target.value = "";
             }
         }} />;
     }

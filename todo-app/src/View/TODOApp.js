@@ -1,8 +1,5 @@
 /**
- * 优化：使用Container-Pattern设计模式，简化TODOApp中的代码
- * 这就是Action和Store带来的神器效果...Flux还是蛮腻害的
- * 
- * 继续优化：使用Flux Utils进行进一步优化
+ * 优化：使用Flux Utils进行进一步优化
  */
 
 

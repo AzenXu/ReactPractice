@@ -13,7 +13,6 @@ class TODOInput extends Component {
         }
     }
 
-    // object类型，就是JS中的字典
     static propTypes = {
         type: propTypes.string.isRequired,
         style: propTypes.object.isRequired,
