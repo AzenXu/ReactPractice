@@ -1,29 +1,33 @@
 import React, { Component } from 'react';
+import Action from '../Action/CounterAction';
+import Store from '../Store/CounterStore';
 
 class CounterApp extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            counter: 0
+            count:Store.getCount()
         };
     }
 
-    changeCounterValue = (value) => {
-        this.setState({
-            counter: this.state.counter + value
+    componentDidMount() {
+        Store.addListener(()=>{
+            this.setState({
+                count:Store.getCount()
+            })
         })
     }
 
     render () {
         return (
             <div>
-                <h1>{this.state.counter}</h1>
+                <h1>{ Store.getCount() }</h1>
                 <button onClick={() => {
-                    this.changeCounterValue(1);
+                    Action.increase();
                 }}> + </button>
                 <button onClick={() => {
-                    this.changeCounterValue(-1);
+                    Action.decrease();
                 }}> - </button>
             </div>
         )

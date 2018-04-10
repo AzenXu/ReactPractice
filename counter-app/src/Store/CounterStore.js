@@ -1,20 +1,22 @@
 
 import dispatcher from '../Dispatcher/CounterDispatcher'
 import actionType from '../Consts'
-import { addListener } from 'cluster';
 
 let count = 0;
+var changeHandler = () => {};
 
 export default {
     getCount() {
         return count;
     },
 
-    addListener(callBack) {
-
+    addListener(stateChangedHandler) {
+        changeHandler = stateChangedHandler;
     },
     
-    _dispatcherToken = dispatcher.register((action) => {
+    _dispatcherToken: dispatcher.register((action) => {
+        console.log(action.type);
+        
         switch (action.type) {
             case actionType.INCREASE:
                 count++;
@@ -27,5 +29,6 @@ export default {
             default:
                 break;
         }
+        changeHandler();
     })
 }
