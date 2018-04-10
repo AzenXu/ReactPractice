@@ -1,6 +1,6 @@
 
 import { Dispatcher } from 'flux';
 
-let TODODispatcher = new Dispatcher;
+let TODODispatcher = new Dispatcher();
 
 export default TODODispatcher;

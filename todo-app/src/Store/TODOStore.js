@@ -9,7 +9,7 @@ import TODODispatcher from '../Dispatcher/TODODispatcher';
 // 为了传消息给View
 import EventEmitter from 'events';
 const CHANGE_TODOS = "CHANGE_TODOS";
-const _emitter = new EventEmitter;
+const _emitter = new EventEmitter();
 // ---
 
 // 1. 把数据放到Store中存储
@@ -49,7 +49,8 @@ let TODOStore = {
                 break;
 
             case Constants.EDITITEM:
-                "自己实现下";
+                console.log("还没实现");
+                
                 break;
 
             case Constants.LOADDATA:

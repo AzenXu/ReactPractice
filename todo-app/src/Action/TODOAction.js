@@ -4,7 +4,6 @@
  */
 
 import Constants from '../Constants/Constants'
-import Dispatcher from '../Dispatcher/TODODispatcher'
 import TODODispatcher from '../Dispatcher/TODODispatcher';
 
 let TODOAction = {
