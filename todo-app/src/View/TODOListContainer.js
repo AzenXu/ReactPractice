@@ -8,7 +8,7 @@ class TODOListContainer extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            todos: TODOStore.getTodos()
+            todos: TODOStore.getState()
         }
     }
 
@@ -20,9 +20,9 @@ class TODOListContainer extends Component {
     }
 
     componentDidMount() {
-        this.removeObserver = TODOStore.addObserver(() => {
+        this.removeObserver = TODOStore.addListener(() => {
             this.setState({
-                todos: TODOStore.getTodos()
+                todos: TODOStore.getState()
             });
         });
     }

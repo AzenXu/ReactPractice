@@ -1,79 +1,114 @@
+
+/**
+ * 使用Flux Util优化Store 
+ */
+
 import Constants from '../Constants/Constants';
 import TODODispatcher from '../Dispatcher/TODODispatcher';
+import { ReduceStore } from 'flux/utils'; // 导入ReduceStore
 
-// ---
-// 为了传消息给View
-import EventEmitter from 'events';
-const CHANGE_TODOS = "CHANGE_TODOS";
-const _emitter = new EventEmitter();
-// ---
+// let TODOStore = {
 
-let todos = [];
+//     getTodos() {
+//         return todos;
+//     },
 
-let TODOStore = {
+//     addObserver (callBack) { // ReduceStore已经封装了这个方法
+//         _emitter.on(CHANGE_TODOS,callBack);
 
-    getTodos() {
-        return todos;
-    },
+//         return () => _emitter.removeListener(CHANGE_TODOS,callBack);
+//     },
 
-    addObserver (callBack) {
-        _emitter.on(CHANGE_TODOS,callBack);
+//     _dispatchToken: TODODispatcher.register((action) => {
+//         switch (action.type) {
+//             case Constants.TOGGLEITEM:
+//                 todos = _toggleItemList(todos, action.ID);
+//                 break;
 
-        return () => _emitter.removeListener(CHANGE_TODOS,callBack);
-    },
+//             case Constants.DELETEITEM:
+//                 todos = _deleteItemList(todos, action.ID);
+//                 break;
 
-    _dispatchToken: TODODispatcher.register((action) => {
+//             case Constants.CREATEITEM:
+//                 todos = _createItem(todos, action.title);
+//                 break;
+
+//             case Constants.EDITITEM:
+//                 console.log("还没实现");
+                
+//                 break;
+
+//             case Constants.LOADDATA:
+//                 todos = action.todos;
+//                 break;
+        
+//             default:
+//                 break;
+//         }
+
+//         _emitter.emit(CHANGE_TODOS);
+//     })
+// }
+
+class TODOStore extends ReduceStore {
+    getInitialState() {
+          return [];  // 类似getTodos方法
+    } 
+    
+    //  框架会对比修改后的todos和修改前的todos，如果有变化才会刷新View
+    reduce(todos, action) {
         switch (action.type) {
             case Constants.TOGGLEITEM:
-                todos = _toggleItemList(todos, action.ID);
-                break;
+                return _toggleItemList(todos, action.ID);
 
             case Constants.DELETEITEM:
-                todos = _deleteItemList(todos, action.ID);
-                break;
+                return  _deleteItemList(todos, action.ID);
 
             case Constants.CREATEITEM:
-                todos = _createItem(todos, action.title);
-                break;
+                return _createItem(todos, action.title);
 
             case Constants.EDITITEM:
                 console.log("还没实现");
-                
                 break;
 
             case Constants.LOADDATA:
-                todos = action.todos;
-                break;
-        
+                return action.todos;
+
             default:
                 break;
-        }
-
-        _emitter.emit(CHANGE_TODOS);
-    })
+        } 
+    } 
 }
 
 let _toggleItemList = (todos, ID) => {
-    let target = todos.find((item) => item.id === ID);
+
+    let newTodos = [...todos]; // 复制todos，不修改上一个传进来的todos
+
+    let target = newTodos.find((item) => item.id === ID);
     target.checked = !target.checked;
-    return todos;
+
+    return newTodos;
 }
 
 let _deleteItemList = (todos, ID) => {
-    let idx = todos.findIndex((item) => item.id === ID);
-    todos.splice(idx, 1);
-    return todos;
+    let newTodos = [...todos]; // 复制todos，不修改上一个传进来的todos
+
+    let idx = newTodos.findIndex((item) => item.id === ID);
+    newTodos.splice(idx, 1);
+    return newTodos;
 }
 
 let _createItem = (todos, title) => {
-    let lastID = todos.length > 0 ? todos[todos.length - 1].id : 100;
+    let newTodos = [...todos]; // 复制todos，不修改上一个传进来的todos
+
+    let lastID = newTodos.length > 0 ? newTodos[newTodos.length - 1].id : 100;
     let newitem = {
         id: lastID + 1,
         title: title,
         checked: false
     }
-    todos.push(newitem);
-    return todos;
+    newTodos.push(newitem);
+    return newTodos;
 }
 
 export default TODOStore;

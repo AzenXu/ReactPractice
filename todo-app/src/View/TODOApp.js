@@ -13,24 +13,8 @@ import TODOStore from '../Store/TODOStore'
 
 class TODOApp extends Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            todos: TODOStore.getTodos()
-        }
-    }
-
     componentDidMount() {
-        this.removeObserver = TODOStore.addObserver(() => {
-            this.setState({
-                todos:TODOStore.getTodos()
-            });
-        });
         TODOAction.loadData();
-    }
-
-    componentWillUnmount() {
-        this.removeObserver();
     }
 
     render() {

@@ -13,18 +13,6 @@ class TODOInputContainer extends Component {
             }
         }} />;
     }
-
-    componentDidMount() {
-        this.removeObserver = TODOStore.addObserver(() => {
-            this.setState({
-                todos: TODOStore.getTodos()
-            });
-        });
-    }
-
-    componentWillUnmount() {
-        this.removeObserver();
-    }
 }
 
 export default TODOInputContainer;
