@@ -7,14 +7,14 @@ class CounterApp extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            count:Store.getCount()
+            count:Store.getState()
         };
     }
 
     componentDidMount() {
         this.listener = Store.addListener(()=>{
             this.setState({
-                count:Store.getCount()
+                count: Store.getState()
             })
         })
     }
@@ -26,7 +26,7 @@ class CounterApp extends Component {
     render () {
         return (
             <div>
-                <h1>{ Store.getCount() }</h1>
+                <h1>{ Store.getState() }</h1>
                 <button onClick={ Action.increase }> + </button>
                 <button onClick={ Action.decrease }> - </button>
             </div>

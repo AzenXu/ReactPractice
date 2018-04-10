@@ -1,40 +1,25 @@
 
 import dispatcher from '../Dispatcher/CounterDispatcher'
 import actionType from '../Consts'
-import EventEmitter from 'events'
+import { ReduceStore } from 'flux/utils'
 
-let count = 0;
-// var changeHandler = () => {};
+class Store extends ReduceStore {
+    getInitialState() {
+        return 0;
+    }
 
-const kStateChangeNotification = "kStateChangeNotification";
-const _notificationCenter = new EventEmitter();
-
-export default {
-
-    getCount() {
-        return count;
-    },
-
-    addListener(stateChangedHandler) {
-        // changeHandler = stateChangedHandler;
-        _notificationCenter.on(kStateChangeNotification, stateChangedHandler)
-        return () => _notificationCenter.removeAllListeners(kStateChangeNotification, stateChangedHandler)
-    },
-    
-    _dispatcherToken: dispatcher.register((action) => {
+    reduce(count, action) {
         switch (action.type) {
             case actionType.INCREASE:
-                count++;
-                break;
+                return count + 1;
 
             case actionType.DECREASE:
-                count--;
-                break;
-        
+                return count - 1;
+
             default:
-                break;
+                return count;
         }
-        _notificationCenter.emit(kStateChangeNotification);
-        // changeHandler();
-    })
+    }
 }
+
+export default new Store(dispatcher);
