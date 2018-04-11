@@ -1,27 +1,17 @@
 import React, { Component } from 'react';
 import TODOList from './TODOList';
-import TODOStore from '../Store/TODOStore'
 import TODOAction from '../Action/TODOAction'
-
-import { Container } from 'flux/utils'
 
 class TODOListContainer extends Component {
 
-    static getStores() {
-        return [TODOStore];
-    }
-
-    static calculateState(prevState) {
-        return {
-            todos: TODOStore.getState(),
-        };
-    }
-
     render() {
 
-        const { todos } = this.state;
+        const { todos, toggleItemList, deleteItem } = this.props;
 
-        return <TODOList items={ todos } toggleItemList={TODOAction.toggleItemList} deleteItemList={TODOAction.deleteItem} />
+        return <TODOList 
+        items={ todos }
+        toggleItemList={toggleItemList}
+        deleteItemList={deleteItem} />
     }
 }
 
