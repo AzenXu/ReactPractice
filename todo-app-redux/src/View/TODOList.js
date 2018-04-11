@@ -7,7 +7,7 @@ class TODOList extends Component {
     static get defaultProps () {
         return {
             items: [],
-            toggleItemList: () => {},
+            toggleItemList: () => { },
             deleteItemList: () => { }
         }
     }

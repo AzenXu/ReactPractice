@@ -9,7 +9,7 @@ class TODOInputContainer extends Component {
 
         const {
             createItemProp
-        } = this.props // 所有要调用的方法，都来从props中取，不直接调Action了
+        } = this.props
 
         return <TODOInput autoFocus={true} onKeyDown={(event) => {
             if (event.keyCode === 13 && event.target.value.length > 0) { // 按下enter键键

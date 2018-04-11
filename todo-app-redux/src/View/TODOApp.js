@@ -1,8 +1,3 @@
-/**
- * 优化：使用Flux Utils进行进一步优化
- */
-
-
 import React, { Component } from 'react';
 import TODOHeaderContainer from './TODOHeaderContainer';
 import TODOInputContainer from './TODOInputContainer';

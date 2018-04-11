@@ -5,8 +5,8 @@ class TODOHeader extends Component {
 
     static get defaultProps() {
         return {
-            name: "刘德华",
-            todoCount: 98
+            name: "",
+            todoCount: 0
         }
     }
 
@@ -16,7 +16,7 @@ class TODOHeader extends Component {
     }
 
     render() {
-        const { name, todoCount } = this.props; // 将属性与局部变量映射起来
+        const { name, todoCount } = this.props;
         return (
             <div>
                 <h1>我的代办清单</h1>

@@ -8,8 +8,8 @@ class TODOItem extends Component {
             title: "We Don`t talk animal",
             isChecked: true,
             id: 0,
-            toggleItem: () => { }, // 添加一个回调函数, 通过调用回调函数，让外界拿到点击到的元素的id
-            deleteItem: () => { } // 添加一个回调函数, 通过调用回调函数，让外界拿到点击到的元素的id
+            toggleItem: () => { },
+            deleteItem: () => { }
         }
     }
 
