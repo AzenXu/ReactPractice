@@ -15,8 +15,15 @@ export default class App extends Component{
   render() {
     return (
       <View style={styles.container}>
-        <Text style={{width:100, height:100, backgroundColor: 'green'}}>1</Text>
-        <Text style={{ width: 100, alignSelf: 'center', backgroundColor: 'yellow'}}>2</Text>
+        <Text style={{width:100, height:100, backgroundColor: 'green', 
+        // position: 'relative', //..通过position让单一View脱离自动布局 relative: 相对布局，会占位，及时他的位置变了，他本来应该在的位置还空着
+        // top: 20,
+        // left: 20
+        position: 'absolute', // 不会占位，他走了别的View顶上它的位置
+        top: 60,
+        right: 20
+        }}>1</Text>
+        <Text style={{ width: 100, height:100, backgroundColor: 'yellow'}}>2</Text>
         <Text style={{ width: 100, height: 100, backgroundColor: 'blue' }}>3</Text>
       </View>
     );
@@ -25,17 +32,6 @@ export default class App extends Component{
 
 const styles = StyleSheet.create({
   container: {
-    flex:1,
-    backgroundColor: '#FF5566',
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    // justifyContent: 'flex-start'
-    // justifyContent: 'flex-end'
-    // justifyContent: 'center'
-    // justifyContent: 'space-between' // 等间距平分
-    justifyContent: 'space-around', // 对一个元素而言左右两边间距相等
-    // alignItems: 'flex-start' // 交叉轴头部对齐
-    alignItems: 'flex-end' // 交叉轴尾部对齐
-    // alignItems: 'stretch' // 没手动设置高度的情况下，item会沿交叉轴自动拉伸
+    flex:1
   }
 });
