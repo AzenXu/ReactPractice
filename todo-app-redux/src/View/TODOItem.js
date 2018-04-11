@@ -28,7 +28,7 @@ class TODOItem extends Component {
             <li>
                 <input type="checkbox" checked={this.props.isChecked} onChange={() => {
                     toggleItem(id)
-                }} {...other}/>
+                }} { ...other }/>
                 <span> { this.props.title } </span>
                 <button onClick={() => {
                     deleteItem(id);

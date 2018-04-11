@@ -12,8 +12,8 @@ class TODOListContainer extends Component {
 
         return <TODOList 
             items={ todosss }
-            toggleItemList={toggleItemProp}
-            deleteItemList={deleteItemProp} />
+            toggleItemList={ toggleItemProp }
+            deleteItemList={ deleteItemProp } />
     }
 }
 
