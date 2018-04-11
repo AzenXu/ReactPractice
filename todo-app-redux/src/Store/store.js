@@ -7,12 +7,12 @@ import { combineReducers, createStore, applyMiddleware } from 'redux';
 import rootReducer from '../Reducers';
 import thunk from 'redux-thunk';
 
-let combineReducers = combineReducers(rootReducer);
+let combinedReducer = combineReducers(rootReducer);
 
 const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
 
 let store = createStoreWithMiddleware(
-    combineReducers
+    combinedReducer
 );
 
 export default store;

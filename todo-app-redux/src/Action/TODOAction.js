@@ -3,8 +3,7 @@
  * 所有动作都从Action中触发，逻辑清晰
  */
 
-import Constants from '../Constants/Constants'
-import TODODispatcher from '../Dispatcher/TODODispatcher';
+import Constants from '../Constants'
 
 let TODOAction = {
     toggleItemList(ID) { 
