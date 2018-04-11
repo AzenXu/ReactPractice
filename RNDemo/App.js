@@ -9,29 +9,44 @@ import {
   Platform,
   StyleSheet,
   Text,
-  View
+  View,
+  Button
 } from 'react-native';
+import style_outer from './styles';
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' +
-    'Cmd+D or shake for dev menu',
-  android: 'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
+let Dimensions = require('Dimensions')
 
-type Props = {};
-export default class App extends Component<Props> {
+let SCREEN_WIDTH = Dimensions.get('window').width;
+let SCREEN_HEIGHT = Dimensions.get('window').height;
+
+let style1 = {
+  backgroundColor:"#FF5566",
+  width: SCREEN_WIDTH,
+  height: SCREEN_HEIGHT
+}
+
+export default class App extends Component{
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
+      <View style={style1}> {/* 对象样式 */}
+        <Text style={{
+          backgroundColor: '#66FF33',
+          color: '#110099',
+          fontSize: 40
+        }}> {/* 内联样式 */}
+          Welcome
         </Text>
-        <Text style={styles.instructions}>
-          To get started, edit App.js
+        <Text style={[
+          {backgroundColor: '#559955'},
+          {width:300, height:100, borderLeftWidth:30}
+        ]}>
+          样式拼接
         </Text>
-        <Text style={styles.instructions}>
-          {instructions}
+        <Text style={styles.s1}>
+          StyleSheet样式
+        </Text>
+        <Text style={style_outer.s1}>
+          样式分离
         </Text>
       </View>
     );
@@ -39,20 +54,10 @@ export default class App extends Component<Props> {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
+  s1: {
+    fontSize:30
+  }
+})
+// 样式是对象，那么就可以抽出来
+
+//  总结：Style是个对象，也可以是个装了很多对象的数组
