@@ -25,6 +25,7 @@ export default class App extends Component{
 const styles = StyleSheet.create({
   container: {
     flex:1,
-    backgroundColor: '#FF5566'
+    backgroundColor: '#FF5566',
+    flexDirection: 'row'
   }
 });
