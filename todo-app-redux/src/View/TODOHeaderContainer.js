@@ -6,6 +6,7 @@
 import React, { Component } from 'react';
 import TODOHeader from './TODOHeader';
 // Redux中，所有View都不需要使用状态机变量
+import { connect } from 'react-redux';
 
 class TODOHeaderContainer extends Component {
 
@@ -18,4 +19,7 @@ class TODOHeaderContainer extends Component {
     }
 }
 
-export default TODOHeaderContainer
+// 不需要和Action打交道的绑定方法
+export default connect(
+    (state) => ({ todos: state.todos })
+)(TODOHeaderContainer);
