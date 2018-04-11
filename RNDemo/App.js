@@ -15,16 +15,9 @@ export default class App extends Component{
   render() {
     return (
       <View style={styles.container}>
-        <Text style={{width:100, height:100, backgroundColor: 'yellow', margin: 5}}>1</Text>
-        <Text style={{ width: 100, height: 100, backgroundColor: 'yellow', margin: 5}}>2</Text>
-        <Text style={{ width: 100, height: 100, backgroundColor: 'yellow', margin: 5 }}>3</Text>
-        <Text style={{ width: 100, height: 100, backgroundColor: 'yellow', margin: 5 }}>4</Text>
-        <Text style={{ width: 100, height: 100, backgroundColor: 'yellow', margin: 5 }}>5</Text>
-        <Text style={{ width: 100, height: 100, backgroundColor: 'yellow', margin: 5 }}>6</Text>
-        <Text style={{ width: 100, height: 100, backgroundColor: 'yellow', margin: 5 }}>7</Text>
-        <Text style={{ width: 100, height: 100, backgroundColor: 'yellow', margin: 5 }}>8</Text>
-        <Text style={{ width: 100, height: 100, backgroundColor: 'yellow', margin: 5}}>9</Text>
-        <Text style={{ width: 100, height: 100, backgroundColor: 'yellow', margin: 5 }}>10</Text>
+        <Text style={{width:100, height:100, backgroundColor: 'green'}}>1</Text>
+        <Text style={{ width: 100, height: 100, backgroundColor: 'yellow'}}>2</Text>
+        <Text style={{ width: 100, height: 100, backgroundColor: 'blue' }}>3</Text>
       </View>
     );
   }
@@ -35,6 +28,11 @@ const styles = StyleSheet.create({
     flex:1,
     backgroundColor: '#FF5566',
     flexDirection: 'row',
-    flexWrap: 'wrap'
+    flexWrap: 'wrap',
+    // justifyContent: 'flex-start'
+    // justifyContent: 'flex-end'
+    // justifyContent: 'center'
+    // justifyContent: 'space-between' // 等间距平分
+    justifyContent: 'space-around' // 对一个元素而言左右两边间距相等
   }
 });
