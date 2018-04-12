@@ -49,6 +49,11 @@ export default class MyListView extends Component {
                 style={{flex:1, backgroundColor: 'green'}}
                 dataSource={this.state.dataSource}
                 renderRow={this._renderRow}
+                renderSectionHeader={(sectionHeader)=>{
+                    return(
+                        <Text style={{ backgroundColor: 'red'}}>{sectionHeader}</Text>
+                    )
+                }}
             />
         )
     }
