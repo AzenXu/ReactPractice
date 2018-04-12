@@ -1,4 +1,4 @@
 import { AppRegistry } from 'react-native';
-import App from './App';
+import MyListView from './MyListView';
 
-AppRegistry.registerComponent('MyChat', () => App);
+AppRegistry.registerComponent('MyChat', () => MyListView);
