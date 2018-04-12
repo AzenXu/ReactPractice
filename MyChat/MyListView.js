@@ -66,6 +66,24 @@ export default class MyListView extends Component {
 
     componentDidMount() {
         console.log(jsonData);
-        
+        let array = jsonData.data;
+        let dataBlob = {};
+        let sections = [];
+        let rows = [];
+
+        for (let index = 0; index < array.length; index++) {
+            const element = array[index];
+            sections.push('section'+index);
+            let sectionDic = array[index];
+            dataBlob['section'+index] = sectionDic.title;
+            let rowsIDs = [];
+            for (let j = 0; j < sectionDic.content.length; j++) {
+                const row = array[j];
+                rowsIDs.push('row'+j);
+                dataBlob['section' + index + ':' + 'row' + j] = sectionDic.content[j].content
+            }
+            rows.push(rowsIDs)
+        }
+        this.setState({dataSource:this.state.dataSource.cloneWithRowsAndSections(dataBlob,sections,rows)})
     }
 }
