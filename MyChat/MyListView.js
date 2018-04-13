@@ -6,6 +6,17 @@ import {
 } from 'react-native';
 import jsonData from './data.json';
 
+/**ListView使用总结
+ * 如果要分组的话，需要:
+ * 1. 给DataSource对象传三个数据
+ * 1.1. 一个数据全集对象，key是sectionID，value是非数组的对象
+ * 1.2. 一个sections数组，里面放所有sectionID
+ * 1.3. 一个包括所有row的二维数组，第一层元素个数和section个数相同，第二层元素个数和section中的row的个数相同
+ * 2. 给DataSource对象实现两个代理方法
+ * 2.1. getSectionHeaderData描述如何从dataBlob中取到sectionHeaderItem
+ * 2.2. getRowData描述如何从dataBlob中取到dataBlob中通过sectionID及rowID取到rowItem
+ */
+
 export default class MyListView extends Component {
 
     constructor (props, context) {
