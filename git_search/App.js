@@ -31,7 +31,14 @@ export default class App extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <TextInput style={styles.textInput} />
+        {/* 首字母默认不大写 */}
+        <TextInput style={styles.textInput}
+          autoCapitalize="none"
+          onEndEditing={(e) => {
+              console.log(e.nativeEvent.text);
+            }
+          }
+          /> 
         <ListView 
           enableEmptySections={true}
           dataSource={this.state.dataSource}
