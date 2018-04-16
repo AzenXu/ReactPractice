@@ -49,7 +49,8 @@ export default class App extends Component {
           defaultSource={require('./images/placeholder.gif')}
         />
         <View style={styles.rowInfoContainer}>
-
+          <Text style={styles.rowInfoTitle}>我是标题</Text>
+          <Text style={styles.rowInfoDesc}>我是描述描述描述描述描述</Text>
         </View>
       </View>
     )
@@ -79,6 +80,14 @@ const styles = StyleSheet.create({
   },
   rowInfoContainer: {
     flex:1,
-    backgroundColor:'blue'
+    backgroundColor:'blue',
+    justifyContent:'space-around'
+  },
+  rowInfoTitle:{
+    fontSize:20,
+    fontWeight:'bold'
+  },
+  rowInfoDesc:{
+    fontSize:14,
   }
 });
