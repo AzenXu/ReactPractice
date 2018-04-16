@@ -36,12 +36,9 @@ export default class App extends Component {
         <TextInput style={styles.textInput}
           autoCapitalize="none"
           onEndEditing={(e) => {
-              console.log('------------');
-              console.log(api.search + e.nativeEvent.text);
               fetch(api.search + e.nativeEvent.text)
               .then((data) => data.json())
               .then((jsonData) => {
-                console.log(jsonData);
                 this.setState({
                   dataSource: this.state.dataSource.cloneWithRows(this._generageItems(jsonData.items))
                 })
@@ -70,9 +67,6 @@ export default class App extends Component {
         login: element.owner.login,
         type: element.owner.type
       })
-      console.log('------');
-      console.log(element.owner.avatar_url);
-      
     }
     return results;
   }
