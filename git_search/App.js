@@ -46,6 +46,7 @@ export default class App extends Component {
       <View style={styles.rowStyle}>
         <Image 
           style={styles.rowImage}
+          defaultSource={require('./images/placeholder.gif')}
         />
         <View style={styles.rowInfoContainer}>
 
