@@ -11,7 +11,8 @@ import {
   Text,
   View,
   TextInput,
-  ListView
+  ListView,
+  Image
 } from 'react-native';
 
 export default class App extends Component {
@@ -34,12 +35,23 @@ export default class App extends Component {
         <ListView 
           enableEmptySections={true}
           dataSource={this.state.dataSource}
-          renderRow={() => {
-            return <Text>Row</Text>
-          }}
+          renderRow={this._renderRow}
         />
       </View>
     );
+  }
+
+  _renderRow = (rowData) => {
+    return(
+      <View style={styles.rowStyle}>
+        <Image 
+          style={styles.rowImage}
+        />
+        <View style={styles.rowInfoContainer}>
+
+        </View>
+      </View>
+    )
   }
 }
 
@@ -51,5 +63,21 @@ const styles = StyleSheet.create({
   textInput: {
     backgroundColor:"yellow",
     height:45
+  },
+  rowStyle: {
+    backgroundColor:"white",
+    marginTop:2,
+    height:60,
+    flexDirection:'row',
+  },
+  rowImage: {
+    width: 60,
+    height: 50,
+    margin:5,
+    backgroundColor:'red'
+  },
+  rowInfoContainer: {
+    flex:1,
+    backgroundColor:'blue'
   }
 });
