@@ -14,6 +14,7 @@ import {
   ListView,
   Image
 } from 'react-native';
+import api from './Utils/Api'
 
 export default class App extends Component {
 
@@ -35,7 +36,19 @@ export default class App extends Component {
         <TextInput style={styles.textInput}
           autoCapitalize="none"
           onEndEditing={(e) => {
-              console.log(e.nativeEvent.text);
+              console.log('------------');
+              console.log(api.search + e.nativeEvent.text);
+              fetch(api.search + e.nativeEvent.text)
+              .then((data) => data.json())
+              .then((jsonData) => {
+                console.log(jsonData);
+                this.setState({
+                  dataSource: this.state.dataSource.cloneWithRows(this._generageItems(jsonData.items))
+                })
+              })
+              .catch((e) => {
+                console.log('数据请求失败');
+              }).done()
             }
           }
           /> 
@@ -48,16 +61,33 @@ export default class App extends Component {
     );
   }
 
+  _generageItems = (items) => {
+    let results = [];
+    for (let index = 0; index < items.length; index++) {
+      const element = items[index];
+      results.push({
+        headerImage: element.owner.avatar_url,
+        login: element.owner.login,
+        type: element.owner.type
+      })
+      console.log('------');
+      console.log(element.owner.avatar_url);
+      
+    }
+    return results;
+  }
+
   _renderRow = (rowData) => {
     return(
       <View style={styles.rowStyle}>
         <Image 
           style={styles.rowImage}
           defaultSource={require('./images/placeholder.gif')}
+          source={{ uri: rowData.headerImage}}
         />
         <View style={styles.rowInfoContainer}>
-          <Text style={styles.rowInfoTitle}>我是标题</Text>
-          <Text style={styles.rowInfoDesc}>我是描述描述描述描述描述</Text>
+          <Text style={styles.rowInfoTitle}>{rowData.login}</Text>
+          <Text style={styles.rowInfoDesc}>{rowData.type}</Text>
         </View>
       </View>
     )
