@@ -1,15 +1,16 @@
 
 import { ActionType } from "../Consts";
+import api from '../Utils/Api'
 
 export default {
     fetchSearchResult(key) {
         return (dispatcher) => {
-            fetch(api.search + e.nativeEvent.text)
+            fetch(api.search + key)
                 .then((data) => data.json())
                 .then((jsonData) => {
                     dispatcher({
                         type: ActionType.LOAD_DATA,
-                        results: this._generageItems(jsonData)
+                        results: _generageItems(jsonData.items)
                     })
                 })
                 .catch((e) => {

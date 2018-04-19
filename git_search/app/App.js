@@ -5,6 +5,7 @@
  */
 
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import {
   Platform,
   StyleSheet,
@@ -15,17 +16,16 @@ import {
   Image
 } from 'react-native';
 import api from './Utils/Api'
+import actions from './Actions/actions'
 
-export default class App extends Component {
+class App extends Component {
 
-  constructor(props, context){
-    super(props, context);
-
-    let ds = new ListView.DataSource({
-      rowHasChanged: (r1, r2) => r1 !== r2
-    })
-    this.state = {
-      dataSource: ds.cloneWithRows(["1","2","3"])
+  static get defaultProps() {
+    return {
+      dataSource: new ListView.DataSource({
+        rowHasChanged: (r1, r2) => r1 !== r2
+      }),
+      results: []
     }
   }
 
@@ -35,40 +35,17 @@ export default class App extends Component {
         {/* 首字母默认不大写 */}
         <TextInput style={styles.textInput}
           autoCapitalize="none"
-          onEndEditing={(e) => {
-              fetch(api.search + e.nativeEvent.text)
-              .then((data) => data.json())
-              .then((jsonData) => {
-                this.setState({
-                  dataSource: this.state.dataSource.cloneWithRows(this._generageItems(jsonData.items))
-                })
-              })
-              .catch((e) => {
-                console.log('数据请求失败');
-              }).done()
-            }
+          onEndEditing = { 
+            (e) => this.props.fetchDataWithKey(e.nativeEvent.text) 
           }
           /> 
         <ListView 
           enableEmptySections={true}
-          dataSource={this.state.dataSource}
+          dataSource={this.props.dataSource.cloneWithRows(this.props.results)}
           renderRow={this._renderRow}
         />
       </View>
     );
-  }
-
-  _generageItems = (items) => {
-    let results = [];
-    for (let index = 0; index < items.length; index++) {
-      const element = items[index];
-      results.push({
-        headerImage: element.owner.avatar_url,
-        login: element.owner.login,
-        type: element.owner.type
-      })
-    }
-    return results;
   }
 
   _renderRow = (rowData) => {
@@ -122,3 +99,14 @@ const styles = StyleSheet.create({
     fontSize:14,
   }
 });
+
+export default connect(
+  (state) => {
+    return {
+      results: state.search_results
+    }
+  },
+  {
+    fetchDataWithKey: actions.fetchSearchResult
+  }
+)(App);
