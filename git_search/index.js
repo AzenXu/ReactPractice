@@ -1,4 +1,4 @@
 import { AppRegistry } from 'react-native';
-import App from './App';
+import Root from './Components/root';
 
-AppRegistry.registerComponent('git_search', () => App);
+AppRegistry.registerComponent('git_search', () => Root);
