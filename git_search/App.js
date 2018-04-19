@@ -14,7 +14,7 @@ import {
   ListView,
   Image
 } from 'react-native';
-import api from './Utils/Api'
+import api from './Constants/Api'
 
 export default class App extends Component {
 
@@ -56,19 +56,6 @@ export default class App extends Component {
         />
       </View>
     );
-  }
-
-  _generageItems = (items) => {
-    let results = [];
-    for (let index = 0; index < items.length; index++) {
-      const element = items[index];
-      results.push({
-        headerImage: element.owner.avatar_url,
-        login: element.owner.login,
-        type: element.owner.type
-      })
-    }
-    return results;
   }
 
   _renderRow = (rowData) => {
