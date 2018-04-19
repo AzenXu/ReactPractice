@@ -16,22 +16,19 @@ _generageItems = (items) => {
     return results;
 }
 
-export default {
-    //  请求数据方法，异步，需要return一个函数
-    findGithubData = (key) => {
-        //  dispatcher从Store中传入，middleWare
-        return (dispatch) => {
-            fetch(api.search + key)
-                .then((data) => data.json())
-                .then((jsonData) => {
-                    dispatch({
-                        type:FIND_GITHUB_DATA,
-                        items: this._generageItems(jsonData.items)
-                    });
-                })
-                .catch((e) => {
-                    console.log('数据请求失败');
-                }).done()
-        }
+export default (key) => {
+    //  dispatcher从Store中传入，middleWare
+    return (dispatch) => {
+        fetch(api.search + key)
+            .then((data) => data.json())
+            .then((jsonData) => {
+                dispatch({
+                    type: FIND_GITHUB_DATA,
+                    items: this._generageItems(jsonData.items)
+                });
+            })
+            .catch((e) => {
+                console.log('数据请求失败');
+            }).done()
     }
-}
+};

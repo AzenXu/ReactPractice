@@ -14,9 +14,23 @@ import {
   ListView,
   Image
 } from 'react-native';
-import api from './Constants/Api'
+import api from '../Constants/Api'
 
-export default class App extends Component {
+import { connect } from "react-redux";
+import githubAction from "../Actions/githubAction"
+
+class App extends Component {
+
+  static get defaultProps() {
+    return {
+      items:[]
+    }
+  }
+
+  componentWillReceiveProps(props) {
+
+  }
+
 
   constructor(props, context){
     super(props, context);
@@ -35,18 +49,7 @@ export default class App extends Component {
         {/* 首字母默认不大写 */}
         <TextInput style={styles.textInput}
           autoCapitalize="none"
-          onEndEditing={(e) => {
-              fetch(api.search + e.nativeEvent.text)
-              .then((data) => data.json())
-              .then((jsonData) => {
-                this.setState({
-                  dataSource: this.state.dataSource.cloneWithRows(this._generageItems(jsonData.items))
-                })
-              })
-              .catch((e) => {
-                console.log('数据请求失败');
-              }).done()
-            }
+          onEndEditing={(e) => { findGithubData(e.nativeEvent.text) }
           }
           /> 
         <ListView 
@@ -63,7 +66,7 @@ export default class App extends Component {
       <View style={styles.rowStyle}>
         <Image 
           style={styles.rowImage}
-          defaultSource={require('./images/placeholder.gif')}
+          defaultSource={require('../images/placeholder.gif')}
           source={{ uri: rowData.headerImage}}
         />
         <View style={styles.rowInfoContainer}>
@@ -109,3 +112,14 @@ const styles = StyleSheet.create({
     fontSize:14,
   }
 });
+
+
+export default App = connect(
+  (state) => {
+    return {
+      items: state.findGithubData
+    }
+  },{
+    githubAction:githubAction
+  }
+)(App);
