@@ -6,14 +6,23 @@
 
 import React, { Component } from 'react';
 import {
-  View
+  View,
+  NavigatorIOS
 } from 'react-native';
+import Homepage from './View/homepage'
 
 export default class App extends Component {
   render() {
     return (
-      <View>
-      </View>
+      <NavigatorIOS 
+        style={
+          {flex:1}
+        }
+        initialRoute={{
+          component: Homepage,
+          title: "主页"
+        }}
+      />
     );
   }
 }
