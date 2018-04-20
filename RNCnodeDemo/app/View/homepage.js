@@ -1,16 +1,35 @@
 
 import React, { Component } from 'react';
 import { 
-    View,
-    Text
+    Text,
+    ListView
  } from 'react-native';
 
  export default class Homepage extends Component {
+
+    constructor(props, context) {
+        super(props, context)
+        let ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+        this.state = {
+            dataSource: ds.cloneWithRows(["1","2"])
+        }
+    }
+
      render() {
          return (
-             <Text>
-                 测试测试测试测试
-             </Text>
+             <ListView 
+                enableEmptySections={true}
+                dataSource={this.state.dataSource}
+                renderRow={this._renderRow}
+             />
          )
+     }
+
+     _renderRow = (rowData) => {
+        return (
+            <Text>
+                {rowData}
+            </Text>
+        )
      }
  }
