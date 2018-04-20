@@ -4,6 +4,7 @@ import {
     Text,
     ListView
  } from 'react-native';
+ import HomeCell from './homecell'
 
  export default class Homepage extends Component {
 
@@ -27,9 +28,9 @@ import {
 
      _renderRow = (rowData) => {
         return (
-            <Text>
-                {rowData}
-            </Text>
+            <HomeCell 
+              rowData={rowData}
+            />
         )
      }
  }
